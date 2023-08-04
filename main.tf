@@ -1,4 +1,17 @@
 #IaC eqfx test
+terraform {
+    required_providers {
+        google = { 
+            source  = "hashicorp/google"
+            version = ">=3.5.0"
+        }
+    }
+}
+
+resource "google_compute_network" "vpc_network" {
+    name = "tf-network-eqfx"
+}
+
 module "gke" {
   source                     = "terraform-google-modules/kubernetes-engine/google"
   project_id                 = var.gcp_project_id
